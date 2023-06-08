@@ -10,10 +10,10 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.client.gui.ForgeIngameGui;
-import net.minecraftforge.client.gui.IIngameOverlay;
+import net.minecraftforge.client.gui.overlay.ForgeGui;
+import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
-public class HealthBar implements IIngameOverlay {
+public class HealthBar implements IGuiOverlay {
 
     private static final ResourceLocation fullHealthBarLocation = new ResourceLocation(SimpleHealthBar.MOD_ID, "textures/gui/healthbars/full.png");
     private static final ResourceLocation witherBarLocation = new ResourceLocation(SimpleHealthBar.MOD_ID, "textures/gui/healthbars/wither.png");
@@ -29,7 +29,7 @@ public class HealthBar implements IIngameOverlay {
     private float intermediateHealth = 0;
 
     @Override
-    public void render(ForgeIngameGui gui, PoseStack poseStack, float partialTick, int width, int height) {
+    public void render(ForgeGui gui, PoseStack poseStack, float partialTick, int width, int height) {
         if (gui.shouldDrawSurvivalElements()) {
             Font font = gui.getFont();
             Player player = (Player) Minecraft.getInstance().cameraEntity;
@@ -71,8 +71,8 @@ public class HealthBar implements IIngameOverlay {
         float health = player.getHealth();
         float maxHealth = player.getMaxHealth();
         // Calculate bar proportions
-        float healthProportion = 0;
-        float intermediateProportion = 0;
+        float healthProportion;
+        float intermediateProportion;
         if (health < intermediateHealth) {
             healthProportion = health / maxHealth;
             intermediateProportion = (intermediateHealth - health) / maxHealth;
