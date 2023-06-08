@@ -15,7 +15,7 @@ public class RenderEventHandler {
     private static final Minecraft mc = Minecraft.getInstance();
 
     @SubscribeEvent
-    public static void testEvent(RenderGameOverlayEvent.PreLayer event) {
+    public static void hideVanillaHealth(RenderGameOverlayEvent.PreLayer event) {
         final ForgeIngameGui gui = ((ForgeIngameGui) Minecraft.getInstance().gui);
         if (!event.isCanceled()
                 && event.getOverlay().equals(ForgeIngameGui.PLAYER_HEALTH_ELEMENT)
