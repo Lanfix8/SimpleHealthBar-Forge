@@ -29,7 +29,7 @@ displayName = "Simple Health Bar" #mandatory
 # A file name (in the root of the mod JAR) containing a logo for display
 logoFile = "image.png" #optional
 # A text field displayed in the mod UI
-credits = "Thanks for this example mod goes to Java" #optional
+credits = "" #optional
 # A text field displayed in the mod UI
 authors = "Lanfix" #optional
 # The description text for the mod (multi line!) (#mandatory)
