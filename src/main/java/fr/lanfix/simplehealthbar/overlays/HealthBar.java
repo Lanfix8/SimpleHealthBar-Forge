@@ -71,8 +71,8 @@ public class HealthBar implements IIngameOverlay {
         float health = player.getHealth();
         float maxHealth = player.getMaxHealth();
         // Calculate bar proportions
-        float healthProportion = 0;
-        float intermediateProportion = 0;
+        float healthProportion;
+        float intermediateProportion;
         if (health < intermediateHealth) {
             healthProportion = health / maxHealth;
             intermediateProportion = (intermediateHealth - health) / maxHealth;
@@ -80,6 +80,8 @@ public class HealthBar implements IIngameOverlay {
             healthProportion = intermediateHealth / maxHealth;
             intermediateProportion = 0;
         }
+        if (healthProportion > 1) healthProportion = 1F;
+        if (healthProportion + intermediateProportion > 1) intermediateProportion = 1 - healthProportion;
         int healthWidth = (int) Math.ceil(80 * healthProportion);
         int intermediateWidth = (int) Math.ceil(80 * intermediateProportion);
         // Display full part
@@ -108,7 +110,6 @@ public class HealthBar implements IIngameOverlay {
         if (Math.abs(health - intermediateHealth) <= 0.25) {
             this.intermediateHealth = health;
         }
-        // TODO hardcore bars
     }
 
     private void renderAbsorptionValue(Font font, PoseStack poseStack, float x, float y, Player player) {
@@ -142,6 +143,7 @@ public class HealthBar implements IIngameOverlay {
         float maxHealth = player.getMaxHealth();
         // Calculate bar proportions
         float absorptionProportion = absorption / maxHealth;
+        if (absorptionProportion > 1) absorptionProportion = 1F;
         int absorptionWidth = (int) Math.ceil(80 * absorptionProportion);
         // Display full part
         RenderSystem.setShaderTexture(0, absorptionBarLocation);
