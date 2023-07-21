@@ -59,7 +59,7 @@ public class HealthBar implements IGuiOverlay {
         double health = Math.ceil(player.getHealth() * 10) / 10;
         String text = health + "/" + (int) player.getMaxHealth();
         text = text.replace(".0", "");
-        guiGraphics.drawString(font, text, x - font.width(text) - 6, y + 1, 0xFF0000);
+        guiGraphics.drawString(font, text, x - font.width(text) - 6, y + 1, 0xFF0000, false);
     }
 
     private void renderHealthBar(GuiGraphics guiGraphics, float partialTick, int x, int y, Player player) {
@@ -108,7 +108,7 @@ public class HealthBar implements IGuiOverlay {
         double absorption = Math.ceil(player.getAbsorptionAmount());
         String text = String.valueOf(absorption / 2);
         text = text.replace(".0", "");
-        guiGraphics.drawString(font, text, x - font.width(text) - 16, y - 9, 0xFFFF00);
+        guiGraphics.drawString(font, text, x - font.width(text) - 16, y - 9, 0xFFFF00, false);
         // blit heart container
         guiGraphics.blit(guiIconsLocation,
                 x - 16, y - 10,
