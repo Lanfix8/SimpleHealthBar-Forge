@@ -37,8 +37,8 @@ public class HealthBar implements IGuiOverlay {
             renderHealthValue(font, guiGraphics, x, y, player);
             renderHealthBar(guiGraphics, partialTick, x, y, player);
             if (player.getAbsorptionAmount() > 0) {
-                renderAbsorptionValue(font, guiGraphics, x, y, player);
                 renderAbsorptionBar(guiGraphics, x, y, player);
+                renderAbsorptionValue(font, guiGraphics, x, y, player);
             }
         }
     }
@@ -87,14 +87,12 @@ public class HealthBar implements IGuiOverlay {
                 80, 9);
         // Display intermediate part
         guiGraphics.blit(intermediateHealthBarLocation,
-                x, y,
                 x + healthWidth, y,
                 healthWidth, 0,
                 intermediateWidth, 9,
                 80, 9);
         // Display empty part
         guiGraphics.blit(emptyHealthBarLocation,
-                x, y,
                 x + healthWidth + intermediateWidth, y,
                 healthWidth + intermediateWidth, 0,
                 80 - healthWidth - intermediateWidth, 9,
@@ -124,7 +122,7 @@ public class HealthBar implements IGuiOverlay {
                 160, 0,
                 9, 9,
                 256, 256);
-        guiGraphics.setColor(0F, 0F, 0F, 0F);
+        guiGraphics.setColor(1F, 1F, 1F, 1F);
     }
 
     private void renderAbsorptionBar(GuiGraphics guiGraphics, int x, int y, Player player) {
